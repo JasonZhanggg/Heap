@@ -1,12 +1,13 @@
 #include <iostream>
 #include <cstring>
+#include <cmath>
 
 using namespace std;
 
 void heapify (int[], int, int);
 void buildHeap(int []);
-void heapSort(int [], int);
-
+void heapSort(int [], int, int);
+void printTree(int [], int);
 void heapify(int arr[],int len, int in){
 	int largest = in;
 	int l = 2*in+1;
@@ -32,6 +33,15 @@ void heapSort(int arr[], int len){
 		heapify(arr, i, 0);
 	}
 }
+void printTree(int arr[], int len){
+	for(int i=0;i<len;i++){
+		for(int j=0;j<pow(2,i)&&j+pow(2,i)<10;j++){
+			cout<<arr[j+(int)pow(2,i)-1]<<" ";
+
+		}
+		cout<<endl;
+	}
+}
 int main(){
 	//char input [80];
 	//char delim[] = " ";
@@ -40,9 +50,11 @@ int main(){
 	//while(input != NULL){	
 	//}
 	int arr[] = {1, 5, 6, 1, 2, 5};
-	heapSort(arr, sizeof(arr)/sizeof(arr[0]));
-	for(int i = 0; i<sizeof(arr)/sizeof(arr[0]); i++){
-		cout<<arr[i] + " ";
+	int len = sizeof(arr)/sizeof(arr[0]);
+	heapSort(arr, len);
+	printTree(arr, len);
+	for(int i = 0; i<len; i++){
+		cout<<arr[i]<<" ";
 	}
 	cout<<endl;
 	return 0;
